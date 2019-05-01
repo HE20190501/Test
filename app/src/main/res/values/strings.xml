@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">BlueTooth</string>
+    <string name="action_settings">Settings</string>
+    <string name="start_bluetooth">开启蓝牙</string>
+    <string name="show_devices">查询配对设备</string>
+    <string name="find_devices">搜索设备</string>
+    <string name="connect_devices">连接设备</string>
+
+    <string name="title_yijian">一键场景</string>
+    <string name="title_room">选择房间</string>
+    <string name="title_diy">diy场景</string>
+    <string name="woshi">卧室</string>
+    <string name="keting">客厅</string>
+    <string name="title_choose">场景选择</string>
+    <string name="zhengchangchangjing">正常场景</string>
+    <string name="qichuangchangjing">起床场景</string>
+    <string name="lijiachangjing">离家场景</string>
+    <string name="huikechangjing">会客场景</string>
+    <string name="jiucanchangjing">就餐场景</string>
+
+    <string name="bring_20">20%</string>
+    <string name="bring_40">40%</string>
+    <string name="bring_60">60%</string>
+    <string name="bring_80">80%</string>
+    <string name="bring_100">100%</string>
+
+    <string name="diy_yellow">yellow</string>
+    <string name="diy_white">white</string>
+    <string name="diy_red">red</string>
+    <string name="diy_green">green</string>
+    <string name="diy_blue">blue</string>
+    <string name="title_time">灯光定时</string>
+    <string name="title_automatic">灯光自调节</string>
+
+    <string name="user">用户登录</string>
+    <string name="normal">普通登录</string>
+    <string name="uesrname">用户名:</string>
+    <string name="passwod">密码:</string>
+
+    //事例
+    <string name="ble_not_supported">BLE is not supported</string>
+    <string name="label_data">Data:</string>
+    <string name="label_device_address">Device address:</string>
+    <string name="label_state">State:</string>
+    <string name="no_data">No data</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="title_devices">BLE Device Scan</string>
+    <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
+
+    <string name="unknown_device">Unknown device</string>
+    <string name="unknown_characteristic">Unknown characteristic</string>
+    <string name="unknown_service">Unknown service</string>
+
+    <!-- Menu items -->
+    <string name="menu_connect">Connect</string>
+    <string name="menu_disconnect">Disconnect</string>
+    <string name="menu_scan">Scan</string>
+    <string name="menu_stop">Stop</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_third">ThirdActivity</string>
+
+</resources>

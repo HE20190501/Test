@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //如果是服务器端，需要建立监听，注意监听的是某个服务的UUID，服务器监听类如下：
+    private class ConnectThread extends Thread {
+    private final String MY_UUID = "00001101-0000-1000-8000-00805F9B34FB";
+    private final BluetoothSocket socket;
+    private final BluetoothDevice device;
+
+    public ConnectThread(BluetoothDevice device) {
+    this.device = device;
+    BluetoothSocket tmp = null;
+
+    try {
+    tmp = device.createRfcommSocketToServiceRecord(UUID.fromString(MY_UUID));
+    } catch (IOException e) {
+    e.printStackTrace();
+    }
+    this.socket = tmp;
+    }
+
+    public void run() {
+    bluetoothAdapter.cancelDiscovery();
+    try {
+    socket.connect();
+    connectedThread = new ConnectedThread(socket);
+    connectedThread.start();
+    } catch (IOException e) {
+    try {
+    socket.close();
+    } catch (IOException ee) {
+    ee.printStackTrace();
+    }
+    return;
+    }
+    //manageConnectedSocket(socket);
+    }
+
+    public void cancel() {
+    try {
+    socket.close();
+    } catch (IOException e) {
+    e.printStackTrace();
+    }
+    }
+    }
+
+    //******************建立连接成功后/用ConnectedThread 收发数据**********************
+    // 客户端与服务器端建立连接成功后，需要ConnectedThread 类接收发送数据：
+    private class ConnectedThread extends Thread {
+    private final BluetoothSocket socket;
+    private final InputStream inputStream;
+    private final OutputStream outputStream;
+
+    public ConnectedThread(BluetoothSocket socket) {
+    this.socket = socket;
+    InputStream input = null;
+    OutputStream output = null;
+
+    try {
+    input = socket.getInputStream();
+    output = socket.getOutputStream();
+    } catch (IOException e) {
+    e.printStackTrace();
+    }
+    this.inputStream = input;
+    this.outputStream = output;
+    }
+
+    public void run() {
+    StringBuilder recvText = new StringBuilder();
+    byte[] buff = new byte[1024];
+    int bytes;
+
+    Bundle tmpBundle = new Bundle();
+    Message tmpMessage = new Message();
+    tmpBundle.putString("notice", "连接成功");
+    tmpMessage.what = NOTICE_VIEW;
+    tmpMessage.setData(tmpBundle);
+    handler.sendMessage(tmpMessage);
+    while (true) {
+    try {
+    bytes = inputStream.read(buff);
+    String str = new String(buff, "ISO-8859-1");
+    str = str.substring(0, bytes);
+
+    // 收到数据，单片机发送上来的数据以"#"结束，这样手机知道一条数据发送结束
+    //Log.e("read", str);
+    if (!str.endsWith("#")) {
+    recvText.append(str);
+    continue;
+    }
+    recvText.append(str.substring(0, str.length() - 1)); // 去除'#'
+
+    Bundle bundle = new Bundle();
+    Message message = new Message();
+
+    bundle.putString("recv", recvText.toString());
+    message.what = RECV_VIEW;
+    message.setData(bundle);
+    handler.sendMessage(message);
+    recvText.replace(0, recvText.length(), "");
+    } catch (IOException e) {
+    e.printStackTrace();
+    break;
+    }
+    }
+    }
+
+    public void write(byte[] bytes) {
+    try {
+    outputStream.write(bytes);
+    } catch (IOException e) {
+    e.printStackTrace();
+    }
+    }
+
+    public void cancel() {
+    try {
+    socket.close();
+    } catch (IOException e) {
+    e.printStackTrace();
+    }
+    }
+    }
+</resources>

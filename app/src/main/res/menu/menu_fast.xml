@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <item
+        android:id="@+id/show_devices"
+        android:title="主页"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item
+        android:id="@+id/start_bluetooth"
+        android:title="灯光定时"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item
+        android:id="@+id/find_devices"
+        android:title="灯光自调控"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item
+        android:id="@+id/connect_devices"
+        android:title="diy场景"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item
+        android:id="@+id/connect_devices"
+        android:title="退出登录"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>
